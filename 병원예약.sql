@@ -31,9 +31,19 @@ CREATE TABLE `staff` (
 	regDate DATETIME NOT NULL,
 	`name` CHAR(100) NOT NULL,
 	staffType CHAR(100) NOT NULL,
-	`medicalDeptId` INT(10) UNSIGNED NOT NULL,
+	`deptId` INT(10) UNSIGNED NOT NULL,
 	PRIMARY KEY(id)
 );
+
+INSERT INTO `staff` (regDate, `name`, `staffType`, `deptId` ) VALUES
+(NOW(), '백승운', '의사', 1),
+(NOW(), '이석구', '의사', 2),
+(NOW(), '정진상', '의사', 3),
+(NOW(), '정원호', '의사', 4),
+(NOW(), '김준수', '의사', 5);
+
+SELECT * FROM `staff`;
+
 
 CREATE TABLE `dept` (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -43,12 +53,32 @@ CREATE TABLE `dept` (
 	PRIMARY KEY(id)
 );
 
+INSERT INTO `dept` (regDate, `name`, `centerId`) 
+VALUES (NOW(), '소화기내과', 1),
+(NOW(), '소아외과', 2),
+(NOW(), '신경과', 3),
+(NOW(), '이비인후과', 4),
+(NOW(), '순환기내과', 5);
+
+SELECT * FROM `dept`;
+
+
 CREATE TABLE `center` (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	regDate DATETIME NOT NULL,
 	`name` CHAR(100) NOT NULL,
 	PRIMARY KEY(id)
 );
+
+INSERT INTO `center` (regDate, `name`) VALUES
+(NOW(), '소화기센터'),
+(NOW(), '소아청소년센터'),
+(NOW(), '뇌신경센터'),
+(NOW(), '인공와우센터'),
+(NOW(), '부정맥센터');
+
+SELECT * FROM `center`;
+
 
 CREATE TABLE `staffSchedule`(
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, # 1
@@ -64,5 +94,4 @@ CREATE TABLE `staffSchedule`(
 );
 
 SHOW TABLES;
-
 
