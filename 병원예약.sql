@@ -9,7 +9,7 @@ CREATE TABLE `member` (
 	regDate DATETIME NOT NULL,
 	`name` CHAR(100) NOT NULL,
 	loginId CHAR(100) NOT NULL,
-	logidPw CHAR(100) NOT NULL,
+	loginPw CHAR(100) NOT NULL,
 	email CHAR(100) NOT NULL,
 	staffId INT(10) UNSIGNED NOT NULL, # 일반회원은 0
 	PRIMARY KEY (id)
