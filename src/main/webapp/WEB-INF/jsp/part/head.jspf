@@ -41,6 +41,15 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 <link rel="stylesheet" href="/resource/common.css">
 <link rel="stylesheet" href="/resource/app.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+/*datepicer 버튼 롤오버 시 손가락 모양 표시*/
+.ui-datepicker-trigger{cursor: pointer;}
+/*datepicer input 롤오버 시 손가락 모양 표시*/
+.hasDatepicker{cursor: pointer;}
+</style>
 <script>
 	var loginedMemberId = parseInt('${loginedMemberId}');
 </script>
@@ -61,7 +70,7 @@
 					class="block btn-a">홈</a></li>
 
 				<li class="cell margin-right-size-1"><a
-					href="/article/list?boardId=1" class="block btn-a">진료예약</a></li>
+					href="/reservation/counselReservation" class="block btn-a">진료예약</a></li>
 				<li class="cell margin-right-size-1"><a
 					href="/article/list?boardId=2" class="block btn-a">예약조회</a></li>
 
