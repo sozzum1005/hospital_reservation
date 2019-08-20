@@ -11,9 +11,41 @@ CREATE TABLE `member` (
 	loginId CHAR(100) NOT NULL,
 	loginPw CHAR(100) NOT NULL,
 	email CHAR(100) NOT NULL,
+	emailAuthKey CHAR(100) NOT NULL,
+    emailAuthStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+    permissionLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 	staffId INT(10) UNSIGNED NOT NULL, # 일반회원은 0
 	PRIMARY KEY (id)
 );
+
+
+
+INSERT INTO `member` SET
+regDate = NOW(),
+`name` = '엄홍길',
+loginId = 'user1',
+loginPw = 'user1',
+email = 'user1@naver.com',
+emailAuthKey = 'DWFREW4dewq',
+emailAuthStatus = 1,
+delStatus = 0,
+permissionLevel = 1,
+staffId = 1;
+
+INSERT INTO `member` SET
+regDate = NOW(),
+`name` = '홍길동',
+loginId = 'user2',
+loginPw = 'user2',
+email = 'user2@naver.com',
+emailAuthKey = 'DWFREW4deedd',
+emailAuthStatus = 1,
+delStatus = 0,
+permissionLevel = 0,
+staffId = 0;
+
+SELECT * FROM member
 
 
 CREATE TABLE counselReservation (
@@ -94,4 +126,3 @@ CREATE TABLE `staffSchedule`(
 );
 
 SHOW TABLES;
-
