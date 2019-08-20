@@ -10,7 +10,7 @@
 <div class="article-detail table-common con">
 	<table>
 		<colgroup>
-			<col width="80">
+			<col width="100">
 		</colgroup>
 		<tbody>
 			<tr>
@@ -22,8 +22,12 @@
 				<td><c:out value="${member.loginId}" /></td>
 			</tr>
 			<tr>
-				<th>날짜</th>
+				<th>가입날짜</th>
 				<td><c:out value="${member.regDate}" /></td>
+			</tr>
+			<tr>
+				<th>이메일주소</th>
+				<td><c:out value="${member.email}" /></td>
 			</tr>
 		</tbody>
 	</table>

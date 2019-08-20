@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sbs.cuni.dto.Member;
 import com.sbs.cuni.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -66,10 +67,76 @@ public class MemberController {
 	}
 
 	@RequestMapping("member/doJoin")
-	@ResponseBody
-	public String showDoJoin(@RequestParam Map<String, Object> param) {
-		memberService.add(param);
-		return "<script> alert('회원가입 완료!'); location.replace('./login');</script>";
+	public String showDoJoin(@RequestParam Map<String, Object> param, Model model, HttpSession session) {
+		Map<String, Object> rs = memberService.doubleCheck(param);
+
+		String resultCode = (String) rs.get("resultCode");
+
+		String redirectUrl = (String) param.get("redirectUrl");
+
+		if (redirectUrl == null || redirectUrl.length() == 0) {
+			redirectUrl = "/member/login";
+		}
+
+		String msg = (String) rs.get("msg");
+
+		model.addAttribute("alertMsg", msg);
+
+		if (resultCode.startsWith("S-")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+		} else {
+			model.addAttribute("historyBack", true);
+		}
+
+		return "common/redirect";
+	}
+	
+	@RequestMapping("member/confirm")
+	public String confirm(@RequestParam Map<String, Object> param, Model model) {
+		Map<String, Object> rs = memberService.updateAuthStatus(param);
+		String msg = (String) rs.get("msg");
+		String resultCode = (String) rs.get("resultCode");
+
+		model.addAttribute("alertMsg", msg);
+
+		String redirectUrl = "/member/login";
+		model.addAttribute("redirectUrl", redirectUrl);
+
+		return "common/redirect";
+	}
+	
+	@RequestMapping("member/myPage")
+	public String myPage(Model model, HttpSession session) {
+		long loginedMemberId = (long) session.getAttribute("loginedMemberId");
+		Member member = memberService.getOne(loginedMemberId);
+		model.addAttribute("member", member);
+		return "member/myPage";
+	}
+	
+	@RequestMapping("member/modify")
+	public String modify(Model model, HttpSession session) {
+		long loginedMemberId = (long) session.getAttribute("loginedMemberId");
+		Member member = memberService.getOne(loginedMemberId);
+		model.addAttribute("member", member);
+		return "member/modify";
+	}
+
+	@RequestMapping("member/doSecession")
+	public String secession(@RequestParam Map<String, Object> param, Model model, HttpSession session) {
+		long loginedMemberId = (long) session.getAttribute("loginedMemberId");
+		param.put("id", loginedMemberId);
+		Map<String, Object> rs = memberService.updateDelStatus(param);
+		session.removeAttribute("loginedMemberId");
+
+		String msg = (String) rs.get("msg");
+		String resultCode = (String) rs.get("resultCode");
+
+		model.addAttribute("alertMsg", msg);
+
+		String redirectUrl = "/member/login";
+		model.addAttribute("redirectUrl", redirectUrl);
+
+		return "common/redirect";
 	}
 	
 }

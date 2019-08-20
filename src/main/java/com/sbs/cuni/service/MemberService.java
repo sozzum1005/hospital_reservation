@@ -10,4 +10,10 @@ public interface MemberService {
 	public Map<String, Object> login(Map<String, Object> param);
 
 	public void add(Map<String, Object> param);
+
+	public Map<String, Object> doubleCheck(Map<String, Object> param);
+
+	public Map<String, Object> updateAuthStatus(Map<String, Object> param);
+
+	public Map<String, Object> updateDelStatus(Map<String, Object> param);
 }

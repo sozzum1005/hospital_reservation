@@ -17,8 +17,49 @@
 		#{loginPw}
 		AND delStatus = 0
 	</select>
+	
+	<select id="doubleCheck" parameterType="map"
+		resultType="Integer">
+		SELECT COUNT(*) FROM `member`
+		WHERE loginId = #{loginId} OR
+		email = #{email}
+	</select>
+	
+	<insert id="addMember" parameterType="map">
+		INSERT INTO `member`
+		SET
+		regDate = NOW(),
+		loginId = #{loginId},
+		loginPw = #{loginPw},
+		email = #{email},
+		`name` = #{name},
+		staffId = #{staffId},
+		emailAuthKey = #{authKey}
+	</insert>
 
+	<select id="getEmailMember" parameterType="map"
+		resultType="Member">
+		SELECT * FROM `member`
+		WHERE email = #{email}
+		AND
+		emailAuthKey =
+		#{authKey}
+	</select>
+	
+	<update id="updateAuthStatus" parameterType="map">
+		UPDATE `member`
+		SET
+		emailAuthStatus = true
+		WHERE email = #{email}
+	</update>
 
+	<update id="updateDelStatus" parameterType="map">
+		UPDATE `member`
+		SET
+		delStatus = 1
+		WHERE id = #{id}
+	</update>
+	
 	<resultMap type="com.sbs.cuni.dto.Member" id="Member">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

@@ -14,4 +14,14 @@ public interface MemberDao {
 
 	public Member getMatchedOne(Map<String, Object> param);
 
+	public int doubleCheck(Map<String, Object> param);
+
+	public void addMember(Map<String, Object> param);
+
+	public Member getEmailMember(Map<String, Object> param);
+
+	public void updateAuthStatus(Map<String, Object> param);
+
+	public void updateDelStatus(Map<String, Object> param);
+
 }

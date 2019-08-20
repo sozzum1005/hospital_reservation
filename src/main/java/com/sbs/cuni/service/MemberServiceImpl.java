@@ -1,30 +1,42 @@
 package com.sbs.cuni.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.groovy.util.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.sbs.cuni.dao.MemberDao;
 import com.sbs.cuni.dto.Member;
+import com.sbs.cuni.handler.MailHandler;
+import com.sbs.cuni.util.CUtil;
 
 import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class MemberServiceImpl implements MemberService {
 	
+	@Value("${custom.emailSender}")
+	private String emailSender;
+	@Value("${custom.emailSenderName}")
+	private String emailSenderName;
+	
 	@Autowired
-	MemberDao mdo;
+	MemberDao memberDao;
+	@Autowired
+	private JavaMailSender sender;
 	
 	@Override
 	public Member getOne(long loginedMemberId) {
-		return mdo.getOne(loginedMemberId);
+		return memberDao.getOne(loginedMemberId);
 	}
 
 	@Override
 	public Map<String, Object> login(Map<String, Object> param) {
-		Member loginedMember = (Member) mdo.getMatchedOne(param);
+		Member loginedMember = (Member) memberDao.getMatchedOne(param);
 
 		String msg = null;
 		String resultCode = null;
@@ -34,6 +46,13 @@ public class MemberServiceImpl implements MemberService {
 		if (loginedMember == null) {
 			resultCode = "F-1";
 			msg = "일치하는 회원이 없습니다.";
+
+			return Maps.of("resultCode", resultCode, "msg", msg);
+		}
+
+		if (loginedMember.isEmailAuthStatus() == false) {
+			resultCode = "F-2";
+			msg = "이메일 인증을 진행해주세요.";
 
 			return Maps.of("resultCode", resultCode, "msg", msg);
 		}
@@ -48,5 +67,70 @@ public class MemberServiceImpl implements MemberService {
 	
 	public void add(Map<String, Object> param) {
 		
+	}
+
+	@Override
+	public Map<String, Object> doubleCheck(Map<String, Object> param) {
+		int count = memberDao.doubleCheck(param);
+
+		String msg = null;
+		String resultCode = null;
+
+		if (count <= 0) {
+			param.put("authKey", CUtil.getTempKey());
+			memberDao.addMember(param);
+			MailHandler mail;
+			try {
+				mail = new MailHandler(sender);
+				mail.setFrom(emailSender, emailSenderName);
+				mail.setTo((String) param.get("email"));
+				mail.setSubject("회원가입 이메일인증");
+				mail.setText(new StringBuffer().append("<h1>이메일인증 메일</h1>")
+						.append("<a href='http://localhost:8083/member/confirm?email=")
+						.append((String) param.get("email")).append("&authKey=").append((String) param.get("authKey"))
+						.append("' target='_blank'> 누르시면 메일 인증 페이지로 이동됩니다. </a>").toString());
+				mail.send();
+				msg = "회원가입에 성공했습니다.";
+				resultCode = "S-2";
+			} catch (Exception e) {
+				msg = "회원가입에 실패했습니다.";
+				resultCode = "F-2";
+				e.printStackTrace();
+			}
+		} else {
+			msg = "회원가입에 실패했습니다.";
+			resultCode = "F-2";
+		}
+
+		return Maps.of("msg", msg, "resultCode", resultCode);
+	}
+
+	@Override
+	public Map<String, Object> updateAuthStatus(Map<String, Object> param) {
+		Member member = memberDao.getEmailMember(param);
+		String msg = "";
+		String resultCode = "";
+		if (member == null) {
+			msg = "업데이트에 실패했습니다.";
+			resultCode = "F-5";
+		} else {
+			memberDao.updateAuthStatus(param);
+			msg = "메일인증에 성공했습니다.";
+			resultCode = "S-5";
+		}
+
+		return Maps.of("msg", msg, "resultCode", resultCode);
+	}
+
+	@Override
+	public Map<String, Object> updateDelStatus(Map<String, Object> param) {
+		Map<String, Object> rs = new HashMap<String, Object>();
+
+		memberDao.updateDelStatus(param);
+
+		rs.put("resultCode", "S-1");
+		rs.put("msg", "탈퇴 되었습니다.");
+
+		return rs;
 	}
 }

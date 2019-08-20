@@ -42,8 +42,12 @@
 			</colgroup>
 			<tbody>
 				<tr>
+					<th>아이디</th>
+					<td><c:out value="${member.loginId}" /></td>
+				</tr>
+				<tr>
 					<th>이름</th>
-					<td><input type="text" name="name" value="${member.name}"></td>
+					<td><c:out value="${member.name}" /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
