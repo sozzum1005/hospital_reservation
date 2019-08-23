@@ -26,88 +26,160 @@
 	</c:forEach>
 </c:url>
 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title><c:out value="${logoText}" /> - <c:out
-		value="${pageTitle}" /></title>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Roboto+Mono" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/jquery.nivo.slider.pack.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/nivo-slider.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+        
+<title><c:out value="${logoText}" /> - <c:out
+		value="${pageTitle}" /></title>
+
 <script src="/resource/common.js"></script>
 <script src="/resource/app.js"></script>
+<script src="/resource/index.js"></script>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 <link rel="stylesheet" href="/resource/common.css">
 <link rel="stylesheet" href="/resource/app.css">
+<link rel="stylesheet" href="/resource/index.css">
+
 <script>
 	var loginedMemberId = parseInt('${loginedMemberId}');
 </script>
 </head>
 <body>
-	<div class="logo-bar con">
-		<h1>
-			<c:out value="${logoText}" />
-			-
-			<c:out value="${pageTitle}" />
-		</h1>
-	</div>
+	<div class="top-menu-bar con-min-width">
+            <nav class="top-menu-1 con row">
+                <ul class="row cell-right">
+                <c:if test="${isLogined == false}">
+                    <li class="cell"><a href="/member/login?redirectUrl=${headRedirectUrl}">로그인</a></li>
+                    <li class="cell"><a href="/member/join?redirectUrl=${headRedirectUrl}">회원가입</a></li>
+                </c:if>
+                <c:if test="${isLogined}">
+                	<li class="cell"><a href="/member/myPage" class="relative">MY PAGE</a></li>
+                	<li class="cell"><a href="/member/doLogout" class="relative">로그아웃</a></li>
+                </c:if>
+                    <li class="cell"><a href="#">고객센터</a></li>
+                </ul>
+            </nav>
+        </div>	
+            <div class="toparea con row">
+                <div class="left-menu cell">
+                    <nav>
+                        <ul class="row">
+                            <li class="cell"><a href="#">병원소개</a></li>
+                            <li class="cell"><a href="#">오시는길</a></li>
+                            <li class="cell"><a href="#">의료진 소개</a></li>
+                            <li class="cell"><a href="#">오늘의 소식</a></li>
+                            <li class="cell"><a href="#">건강백서</a></li>
+                            <li class="cell"><a href="#">인재채용</a></li>
+                            <li class="cell"><a href="#">Q＆A</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="top-logo cell">
+                    <div class="img-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmP-4mZcSEGIkaIfQmrcHdsD9CKujDjU5WBH04dFzNBPGnCEO" alt=""></div>
+                </div>
+            </div>
 
-	<div class="top-bar con margin-top-size-1">
-		<nav class="menu-1">
-			<ul class="row">
-				<li class="cell margin-right-size-1"><a href="/"
-					class="block btn-a">홈</a></li>
-
-				<li class="cell margin-right-size-1"><a
-					href="/article/list?boardId=1" class="block btn-a">진료예약</a></li>
-				<li class="cell margin-right-size-1"><a
-					href="/article/list?boardId=2" class="block btn-a">예약조회</a></li>
-
-
-				<%-- staff(permissionLevel=1)가 로그인 했을 때 상담 예약가능 시간 설정이 가능한 페이지가 떠야함 --%>
-				<c:if test="${isLogined}">	
-					<c:if test="${loginedMember.permissionLevel > 0}">
-						<li class="cell margin-right-size-1"><a
-							href="/article/add?boardId=1" class="block btn-a">진료예약설정</a></li>
-						<li class="cell margin-right-size-1"><a
-						href="/article/add?boardId=2" class="block btn-a">예약시간수정</a></li>
-					</c:if>
-					<c:if
-						test="${loginedMemberId == article.memberId && isArticleModifyAvailable && param.id != null}">
-						<li class="cell margin-right-size-1"><a
-							href="/article/modify?id=${article.id}&boardId=${param.boardId}"
-							class="block btn-a">글 수정</a></li>
-					</c:if>
-					<c:if test="${isArticleDeleteAvailable && param.id != null}">
-						<c:if
-							test="${loginedMemberId == article.memberId || loginedMember.permissionLevel > 0}">
-							<li class="cell margin-right-size-1"><a
-								onclick="return confirm('정말 삭제하시겠습니까?');"
-								href="/article/doDelete?id=${article.id}&boardId=${param.boardId}"
-								class="block btn-a">글 삭제</a></li>
-						</c:if>
-					</c:if>
-					<li class="cell margin-right-size-1"><a href="/member/myPage"
-						class="block btn-a">마이페이지</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/modify?id=${member.id}" class="block btn-a">회원정보수정</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/doLogout" class="block btn-a">로그아웃</a></li>
-				</c:if>
-
-				<c:if test="${isLogined == false}">
-					<li class="cell margin-right-size-1"><a
-						href="/member/login?redirectUrl=${headRedirectUrl}"
-						class="block btn-a">로그인</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/findInfo" class="block btn-a">아이디/비번찾기</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/join?redirectUrl=${headRedirectUrl}"
-						class="block btn-a">가입</a></li>
-				</c:if>
-			</ul>
-		</nav>
-	</div>
+            <div class="menu-bar con ">
+                <nav class="menu-1 inline-block">
+                    <ul class="row">
+                        <li class="cell relative">
+                            <a href="#">진료예약</a>
+                            <ul>
+                                <li><a href="#">진료과/의료진</a></li>
+                                <li><a href="#">진료일정 검색</a></li>
+                                <li><a href="#">예약하기</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">BLACK STONE</a>
+                            <ul>
+                                <li><a href="#">대용량디퓨저</a></li>
+                                <li><a href="#">디퓨저리필</a></li>
+                                <li><a href="#">악세서리</a></li>
+                                <li><a href="#">선물세트/포장</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">GOLD LABEL</a>
+                            <ul>
+                                <li><a href="#">대용량디퓨저</a></li>
+                                <li><a href="#">디퓨저리필</a></li>
+                                <li><a href="#">악세서리</a></li>
+                                <li><a href="#">선물세트/포장</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">BLACK LABEL</a>
+                            <ul>
+                                <li><a href="#">디퓨저</a></li>
+                                <li><a href="#">미니디퓨저</a></li>
+                                <li><a href="#">차량용디퓨저</a></li>
+                                <li><a href="#">디퓨저리필</a></li>
+                                <li><a href="#">악세서리</a></li>
+                                <li><a href="#">선물세트/포장</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">QUEEN'S LABEL</a>
+                            <ul>
+                                <li><a href="#">디퓨저</a></li>
+                                <li><a href="#">미니디퓨저</a></li>
+                                <li><a href="#">차량용디퓨저</a></li>
+                                <li><a href="#">디퓨저리필</a></li>
+                                <li><a href="#">악세서리</a></li>
+                                <li><a href="#">선물세트/포장</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">PREMIUM AROMA</a>
+                            <ul>
+                                <li><a href="#">디퓨저</a></li>
+                                <li><a href="#">미니디퓨저</a></li>
+                                <li><a href="#">차량용디퓨저</a></li>
+                                <li><a href="#">디퓨저리필</a></li>
+                                <li><a href="#">악세서리</a></li>
+                                <li><a href="#">선물세트/포장</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">CAR DIFFUSER</a>
+                            <ul>
+                                <li><a href="#">디퓨저</a></li>
+                                <li><a href="#">미니디퓨저</a></li>
+                                <li><a href="#">차량용디퓨저</a></li>
+                                <li><a href="#">디퓨저리필</a></li>
+                                <li><a href="#">악세서리</a></li>
+                                <li><a href="#">선물세트/포장</a></li>
+                            </ul>
+                        </li>
+                        <li class="cell relative">
+                            <a href="#">REFILL</a>
+                            <ul>
+                                <li><a href="#">블랙스톤</a></li>
+                                <li><a href="#">골드라벨</a></li>
+                                <li><a href="#">블랙라벨</a></li>
+                                <li><a href="#">퀸즈라벨</a></li>
+                                <li><a href="#">프리미엄아로마</a></li>
+                                <li><a href="#">스틱/용품</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 	<div class="margin-top-size-1"></div>
