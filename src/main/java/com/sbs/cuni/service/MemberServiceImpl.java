@@ -146,4 +146,17 @@ public class MemberServiceImpl implements MemberService {
 
 		return rs;
 	}
+
+	@Override
+	public Map<String, Object> updatepassword(Map<String, Object> args) {
+		Map<String, Object> rs = new HashMap<String, Object>();
+
+		memberDao.updatepassword(args);
+
+		rs.put("resultCode", "S-1");
+
+		rs.put("msg", "비밀번호가 수정되었습니다.");
+
+		return rs;
+	}
 }

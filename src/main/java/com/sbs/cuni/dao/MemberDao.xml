@@ -44,6 +44,14 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<update id="updatepassword" parameterType="map">
+		UPDATE member
+		<set>
+			<if test="newloginPw != null">loginPw = #{newloginPw}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
 
 	<select id="getEmailMember" parameterType="map"
 		resultType="Member">

@@ -74,7 +74,7 @@
 			</tbody>
 		</table>
 	</form>
-	<button class="btn-a" type="button">비밀번호 변경</button>
+	<button class="btn-a" type="button" onclick="location.href='../member/modifypassword'">비밀번호 변경</button>
 	<button class="btn-a" type="button"
 		onclick="if ( confirm('정말 탈퇴하시겠습니까?') ) location.href = './doSecession'">회원탈퇴</button>
 
