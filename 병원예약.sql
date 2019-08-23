@@ -12,9 +12,9 @@ CREATE TABLE `member` (
 	loginPw CHAR(100) NOT NULL,
 	email CHAR(100) NOT NULL,
 	emailAuthKey CHAR(100) NOT NULL,
-    emailAuthStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-    permissionLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+	emailAuthStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+	permissionLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 	staffId INT(10) UNSIGNED NOT NULL, # 일반회원은 0
 	PRIMARY KEY (id)
 );
@@ -45,7 +45,7 @@ delStatus = 0,
 permissionLevel = 0,
 staffId = 0;
 
-SELECT * FROM member
+SELECT * FROM MEMBER
 
 
 CREATE TABLE counselReservation (
