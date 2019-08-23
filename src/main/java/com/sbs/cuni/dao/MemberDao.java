@@ -28,4 +28,8 @@ public interface MemberDao {
 
 	public void updatepassword(Map<String, Object> param);
 
+	public Member searchId(Map<String, Object> param);
+
+	public Member searchPw(Map<String, Object> param);
+
 }

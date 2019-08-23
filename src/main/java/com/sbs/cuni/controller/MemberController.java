@@ -201,4 +201,61 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
+	@RequestMapping("member/findInfo")
+	public String findInfo() {
+		return "member/findInfo";
+	}
+	
+	@RequestMapping("member/doSearchId")
+	public String doSearchId(@RequestParam Map<String, Object> param, HttpSession session, Model model) {
+		Map<String, Object> rs = memberService.searchId(param);
+
+		String resultCode = (String) rs.get("resultCode");
+
+		String msg = (String) rs.get("msg");
+
+		model.addAttribute("alertMsg", msg);
+
+		String redirectUrl = (String) param.get("redirectUrl");
+
+		if (redirectUrl == null || redirectUrl.length() == 0) {
+			redirectUrl = "/member/login";
+		}
+
+		if (resultCode.startsWith("S-")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+			session.setAttribute("loginedMemberId", rs.get("loginedMemberId"));
+		} else {
+			model.addAttribute("historyBack", true);
+		}
+
+		return "common/redirect";
+	}
+
+	@RequestMapping("member/doSearchPw")
+	public String doSearchPw(@RequestParam Map<String, Object> param, HttpSession session, Model model) {
+		Map<String, Object> rs = memberService.searchPw(param);
+
+		String resultCode = (String) rs.get("resultCode");
+
+		String msg = (String) rs.get("msg");
+
+		model.addAttribute("alertMsg", msg);
+
+		String redirectUrl = (String) param.get("redirectUrl");
+
+		if (redirectUrl == null || redirectUrl.length() == 0) {
+			redirectUrl = "/member/login";
+		}
+
+		if (resultCode.startsWith("S-")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+			session.setAttribute("loginedMemberId", rs.get("loginedMemberId"));
+		} else {
+			model.addAttribute("historyBack", true);
+		}
+
+		return "common/redirect";
+	}
+	
 }

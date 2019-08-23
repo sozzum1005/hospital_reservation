@@ -159,4 +159,58 @@ public class MemberServiceImpl implements MemberService {
 
 		return rs;
 	}
+
+	public Map<String, Object> searchId(Map<String, Object> param) {
+		Member member = memberDao.searchId(param);
+		System.out.println(member.getLoginId());
+		String msg = null;
+		String resultCode = null;
+		MailHandler mail;
+		try {
+			mail = new MailHandler(sender);
+			mail.setFrom(emailSender, emailSenderName);
+			mail.setTo((String) param.get("email"));
+			mail.setSubject("회원님의 아이디가 발송되었습니다.");
+			mail.setText(new StringBuffer().append("<h1>아이디는 " + member.getLoginId() + " 입니다.</h1>").toString());
+			mail.send();
+			msg = "메일이 발송되었습니다.";
+			resultCode = "S-2";
+		} catch (Exception e) {
+			msg = "메일 발송에 실패했습니다.";
+			resultCode = "F-2";
+			e.printStackTrace();
+		}
+		return Maps.of("msg", msg, "resultCode", resultCode);
+	}
+	
+	public Map<String, Object> searchPw(Map<String, Object> param) {
+		Member member = memberDao.searchPw(param);
+		String msg = null;
+		String resultCode = null;
+		MailHandler mail;
+		
+		int loginedMemberId = member.getId();
+		String temporaryPassword = CUtil.getTempKey();
+		param.put("temporaryPassword", temporaryPassword);
+		param.put("id", loginedMemberId);
+		
+		
+		try {
+			memberDao.update(param);
+			
+			mail = new MailHandler(sender);
+			mail.setFrom(emailSender, emailSenderName);
+			mail.setTo((String) param.get("email"));
+			mail.setSubject("회원님의 임시 비밀번호가 발송되었습니다");
+			mail.setText(new StringBuffer().append("<h1>임시 비밀번호는 " + temporaryPassword + " 입니다.</h1>").toString());
+			mail.send();
+			msg = "메일이 발송되었습니다.";
+			resultCode = "S-2";
+		} catch (Exception e) {
+			msg = "메일 발송에 실패했습니다.";
+			resultCode = "F-2";
+			e.printStackTrace();
+		}
+		return Maps.of("msg", msg, "resultCode", resultCode);
+	}
 }

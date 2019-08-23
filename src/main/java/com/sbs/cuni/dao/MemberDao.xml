@@ -40,7 +40,8 @@
 	<update id="update" parameterType="map">
 		UPDATE member
 		<set>
-			<if test="email != null">email = #{email}</if>
+			<if test="email != null">email = #{email},</if>
+			<if test="temporaryPassword != null">loginPw = #{temporaryPassword}</if>
 		</set>
 		WHERE id = #{id}
 	</update>
@@ -52,6 +53,24 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<select id="searchId" parameterType="Map" resultMap="Member">
+		SELECT *
+		FROM
+		member
+		WHERE name = #{name}
+		AND email = #{email}
+	</select>
+
+	<select id="searchPw" parameterType="Map" resultMap="Member">
+		SELECT *
+		FROM
+		member
+		WHERE name = #{name}
+		AND loginId = #{loginId}
+		AND email =
+		#{email}
+	</select>
 
 	<select id="getEmailMember" parameterType="map"
 		resultType="Member">
