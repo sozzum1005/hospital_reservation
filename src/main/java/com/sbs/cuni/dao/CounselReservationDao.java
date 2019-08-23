@@ -1,5 +1,10 @@
 package com.sbs.cuni.dao;
 
-public class CounselReservationDao {
+import org.apache.ibatis.annotations.Mapper;
 
-}
+import com.sbs.cuni.dto.CounselReservation;
+
+@Mapper
+public interface CounselReservationDao {
+	public CounselReservation getOneReservation(long loginedMemberId);
+}			
