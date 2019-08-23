@@ -8,7 +8,7 @@
 <%@ include file="../part/head.jspf"%>
 
 <script src="/resource/index.js"></script>
-
+<div class="contents con row">
 <div class="slider-1 cell">
 	<div id="nivoSlider1">
 		<img
@@ -49,6 +49,7 @@
 			src="http://www.kidsdreamch.com/img_up/shop_pds/kid2/design/img/sae-hae-so-mang-i-teu-ta-i.jpg"
 			alt="이벤트 종료" title="이벤트 종료" border="0" />
 	</div>
+</div>
 </div>
 
 <%@ include file="../part/foot.jspf"%>
