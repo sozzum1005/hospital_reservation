@@ -1,4 +1,4 @@
-package com.sbs.cuni.interceptor;
+package com.sbs.hospital.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.sbs.cuni.dto.Member;
-import com.sbs.cuni.service.MemberService;
+import com.sbs.hospital.dto.Member;
+import com.sbs.hospital.service.MemberService;
 
 
 @Component("beforeActionInterceptor")

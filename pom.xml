@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sbs</groupId>
-	<artifactId>cuni</artifactId>
+	<artifactId>hospital</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cuni</name>
-	<description>CUNI</description>
+	<name>hospital</name>
+	<description>Hospital</description>
 
 	<properties>
 		<java.version>1.8</java.version>

@@ -1,4 +1,4 @@
-package com.sbs.cuni.service;
+package com.sbs.hospital.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.sbs.cuni.dao.MemberDao;
-import com.sbs.cuni.dto.Member;
-import com.sbs.cuni.handler.MailHandler;
-import com.sbs.cuni.util.CUtil;
+import com.sbs.hospital.dao.MemberDao;
+import com.sbs.hospital.dto.Member;
+import com.sbs.hospital.handler.MailHandler;
+import com.sbs.hospital.util.CUtil;
 
 import lombok.extern.slf4j.Slf4j;
 @Service

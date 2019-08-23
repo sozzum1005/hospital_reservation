@@ -1,4 +1,4 @@
-package com.sbs.cuni.handler;
+package com.sbs.hospital.handler;
 
 import java.io.UnsupportedEncodingException;
 

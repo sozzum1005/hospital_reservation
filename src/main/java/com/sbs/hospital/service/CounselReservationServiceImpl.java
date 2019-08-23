@@ -1,4 +1,4 @@
-package com.sbs.cuni.service;
+package com.sbs.hospital.service;
 
 public class CounselReservationServiceImpl {
 

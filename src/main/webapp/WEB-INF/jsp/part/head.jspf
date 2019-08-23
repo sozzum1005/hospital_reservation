@@ -71,6 +71,7 @@
                 <c:if test="${isLogined}">
                 	<li class="cell"><a href="/member/myPage" class="relative">MY PAGE</a></li>
                 	<li class="cell"><a href="/member/doLogout" class="relative">로그아웃</a></li>
+                	<li class="cell"><a href="/member/modify" class="relative">회원정보수정</a></li>
                 </c:if>
                     <li class="cell"><a href="#">고객센터</a></li>
                 </ul>
@@ -84,9 +85,7 @@
                             <li class="cell"><a href="#">오시는길</a></li>
                             <li class="cell"><a href="#">의료진 소개</a></li>
                             <li class="cell"><a href="#">오늘의 소식</a></li>
-                            <li class="cell"><a href="#">건강백서</a></li>
                             <li class="cell"><a href="#">인재채용</a></li>
-                            <li class="cell"><a href="#">Q＆A</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -95,7 +94,7 @@
                 </div>
             </div>
 
-            <div class="menu-bar con ">
+            <div class="menu-bar con text-align-center ">
                 <nav class="menu-1 inline-block">
                     <ul class="row">
                         <li class="cell relative">
@@ -107,78 +106,50 @@
                             </ul>
                         </li>
                         <li class="cell relative">
-                            <a href="#">BLACK STONE</a>
+                            <a href="#">센터</a>
                             <ul>
-                                <li><a href="#">대용량디퓨저</a></li>
-                                <li><a href="#">디퓨저리필</a></li>
-                                <li><a href="#">악세서리</a></li>
-                                <li><a href="#">선물세트/포장</a></li>
+                                <li><a href="#">소화기센터</a></li>
+                                <li><a href="#">소아청소년센터</a></li>
+                                <li><a href="#">뇌신경센터</a></li>
+                                <li><a href="#">인공와우센터</a></li>
+                                <li><a href="#">부정맥센터</a></li>
                             </ul>
                         </li>
                         <li class="cell relative">
-                            <a href="#">GOLD LABEL</a>
+                            <a href="#">의료진 소개</a>
                             <ul>
-                                <li><a href="#">대용량디퓨저</a></li>
-                                <li><a href="#">디퓨저리필</a></li>
-                                <li><a href="#">악세서리</a></li>
-                                <li><a href="#">선물세트/포장</a></li>
+                                <li><a href="#">소화기내과</a></li>
+                                <li><a href="#">소아외과</a></li>
+                                <li><a href="#">신경과</a></li>
+                                <li><a href="#">이비인후과</a></li>
+                                <li><a href="#">순환기내과</a></li>
                             </ul>
                         </li>
                         <li class="cell relative">
-                            <a href="#">BLACK LABEL</a>
+                            <a href="#">건강백서</a>
                             <ul>
-                                <li><a href="#">디퓨저</a></li>
-                                <li><a href="#">미니디퓨저</a></li>
-                                <li><a href="#">차량용디퓨저</a></li>
-                                <li><a href="#">디퓨저리필</a></li>
-                                <li><a href="#">악세서리</a></li>
-                                <li><a href="#">선물세트/포장</a></li>
+                                <li><a href="#">오늘의 건강</a></li>
+                                <li><a href="#">건강식품</a></li>
+                                <li><a href="#">건강백서</a></li>
                             </ul>
                         </li>
                         <li class="cell relative">
-                            <a href="#">QUEEN'S LABEL</a>
+                            <a href="#">병원안내</a>
                             <ul>
-                                <li><a href="#">디퓨저</a></li>
-                                <li><a href="#">미니디퓨저</a></li>
-                                <li><a href="#">차량용디퓨저</a></li>
-                                <li><a href="#">디퓨저리필</a></li>
-                                <li><a href="#">악세서리</a></li>
-                                <li><a href="#">선물세트/포장</a></li>
+                                <li><a href="#">병원지도</a></li>
+                                <li><a href="#">층별안내</a></li>
+                                <li><a href="#">오시는 길</a></li>
                             </ul>
                         </li>
                         <li class="cell relative">
-                            <a href="#">PREMIUM AROMA</a>
+                            <a href="#">Q & A</a>
                             <ul>
-                                <li><a href="#">디퓨저</a></li>
-                                <li><a href="#">미니디퓨저</a></li>
-                                <li><a href="#">차량용디퓨저</a></li>
-                                <li><a href="#">디퓨저리필</a></li>
-                                <li><a href="#">악세서리</a></li>
-                                <li><a href="#">선물세트/포장</a></li>
+                                <li><a href="#">오늘의 질문</a></li>
+                                <li><a href="#">질문백서</a></li>
+                                <li><a href="#">자주 묻는 질문</a></li>
                             </ul>
                         </li>
-                        <li class="cell relative">
-                            <a href="#">CAR DIFFUSER</a>
-                            <ul>
-                                <li><a href="#">디퓨저</a></li>
-                                <li><a href="#">미니디퓨저</a></li>
-                                <li><a href="#">차량용디퓨저</a></li>
-                                <li><a href="#">디퓨저리필</a></li>
-                                <li><a href="#">악세서리</a></li>
-                                <li><a href="#">선물세트/포장</a></li>
-                            </ul>
-                        </li>
-                        <li class="cell relative">
-                            <a href="#">REFILL</a>
-                            <ul>
-                                <li><a href="#">블랙스톤</a></li>
-                                <li><a href="#">골드라벨</a></li>
-                                <li><a href="#">블랙라벨</a></li>
-                                <li><a href="#">퀸즈라벨</a></li>
-                                <li><a href="#">프리미엄아로마</a></li>
-                                <li><a href="#">스틱/용품</a></li>
-                            </ul>
-                        </li>
+                      
                     </ul>
                 </nav>
             </div>

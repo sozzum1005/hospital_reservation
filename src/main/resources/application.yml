@@ -2,9 +2,9 @@ custom:
   logoText: hospital
   uploadDir: C:/work/ksh/uploads
   emailSender: no-reply@noreply.com
-  emailSenderName: CUNI Master
+  emailSenderName: Hospital Master
 mybatis:
-  type-aliases-package: com.sbs.cuni.dto
+  type-aliases-package: com.sbs.hospital.dto
 server:
   port: 8083
 spring:

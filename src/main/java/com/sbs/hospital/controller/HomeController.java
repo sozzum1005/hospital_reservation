@@ -1,4 +1,4 @@
-package com.sbs.cuni.controller;
+package com.sbs.hospital.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

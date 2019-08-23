@@ -1,4 +1,4 @@
-package com.sbs.cuni.dto;
+package com.sbs.hospital.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

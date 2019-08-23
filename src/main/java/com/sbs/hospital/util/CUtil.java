@@ -1,4 +1,4 @@
-package com.sbs.cuni.util;
+package com.sbs.hospital.util;
 
 import java.math.BigInteger;
 import java.util.Random;

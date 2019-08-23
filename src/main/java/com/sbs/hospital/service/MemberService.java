@@ -1,8 +1,8 @@
-package com.sbs.cuni.service;
+package com.sbs.hospital.service;
 
 import java.util.Map;
 
-import com.sbs.cuni.dto.Member;
+import com.sbs.hospital.dto.Member;
 
 public interface MemberService {
 	public Member getOne(long id);

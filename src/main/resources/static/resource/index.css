@@ -87,7 +87,7 @@ html {
 }
 
 .top-menu-bar {
-    background-color: black;
+    background-color: #66CCFF;
     height: 32px;
 }
 
@@ -211,7 +211,7 @@ html {
 /*메인 메뉴*/
 
 .menu-bar {
-    border-top: 3px solid black;
+    border-top: 3px solid #66CCFF;
 
 }
 
@@ -229,13 +229,14 @@ html {
 }
 
 .menu-bar .menu-1 > ul > li > a {
-    padding: 10px 17px;
+    padding: 10px 40px;
+    color : #66CCFF;
     font-size: 1rem;
     font-weight: bold;
 }
 
 .menu-bar .menu-1 ul > li:hover > a {
-    background-color: black;
+    background-color: #66CCFF;
     color: white;
 }
 
@@ -486,7 +487,7 @@ html {
 
 .footer-bn {
     height: 167px;
-    border-top: 1.5px solid black;
+    border-top: 1.5px solid #66CCFF;
     margin: 40px auto 0;
     cursor: default;
 }
@@ -665,8 +666,8 @@ html {
 }
 
 .inner .menu-bottom {
-    border-top: 1px solid #dfdfdf;
-    border-bottom: 1px solid #dfdfdf;
+    border-top: 1px solid #66CCFF;
+    border-bottom: 1px solid #66CCFF;
     height: 38px;
     line-height: 38px;
     text-align: center;

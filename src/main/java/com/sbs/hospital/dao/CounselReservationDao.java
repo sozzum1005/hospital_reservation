@@ -1,4 +1,4 @@
-package com.sbs.cuni.dao;
+package com.sbs.hospital.dao;
 
 public class CounselReservationDao {
 

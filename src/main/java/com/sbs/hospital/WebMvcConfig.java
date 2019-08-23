@@ -1,4 +1,4 @@
-package com.sbs.cuni;
+package com.sbs.hospital;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

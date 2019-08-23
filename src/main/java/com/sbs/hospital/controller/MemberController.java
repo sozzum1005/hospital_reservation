@@ -1,4 +1,4 @@
-package com.sbs.cuni.controller;
+package com.sbs.hospital.controller;
 
 import java.util.Map;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sbs.cuni.dto.Member;
-import com.sbs.cuni.service.MemberService;
+import com.sbs.hospital.dto.Member;
+import com.sbs.hospital.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -126,6 +126,7 @@ public class MemberController {
 	public String doModify(Model model, @RequestParam Map<String, Object> param, HttpSession session) {
 		long loginedMemberId = (long) session.getAttribute("loginedMemberId");
 		param.put("id", loginedMemberId);
+		Member member = new Member();
 
 		Map<String, Object> updateRs = memberService.update(param);
 
