@@ -120,6 +120,33 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "member/modify";
 	}
+	
+	@RequestMapping("/member/doModify")
+	@ResponseBody
+	public String doModify(Model model, @RequestParam Map<String, Object> param, HttpSession session) {
+		long loginedMemberId = (long) session.getAttribute("loginedMemberId");
+		param.put("id", loginedMemberId);
+
+		Map<String, Object> updateRs = memberService.update(param);
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<script>");
+
+		String msg = (String) updateRs.get("msg");
+
+		sb.append("alert('" + msg + "');");
+
+		if (((String) updateRs.get("resultCode")).startsWith("S-")) {
+			sb.append("location.replace('./myPage');");
+		} else {
+			sb.append("history.back();");
+		}
+
+		sb.append("</script>");
+
+		return sb.toString();
+	}
 
 	@RequestMapping("member/doSecession")
 	public String secession(@RequestParam Map<String, Object> param, Model model, HttpSession session) {

@@ -133,4 +133,17 @@ public class MemberServiceImpl implements MemberService {
 
 		return rs;
 	}
+
+	@Override
+	public Map<String, Object> update(Map<String, Object> args) {
+		Map<String, Object> rs = new HashMap<String, Object>();
+
+		memberDao.update(args);
+
+		rs.put("resultCode", "S-1");
+
+		rs.put("msg", "회원정보가 수정되었습니다.");
+
+		return rs;
+	}
 }

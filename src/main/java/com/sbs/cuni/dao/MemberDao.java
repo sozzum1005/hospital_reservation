@@ -24,4 +24,6 @@ public interface MemberDao {
 
 	public void updateDelStatus(Map<String, Object> param);
 
+	public void update(Map<String, Object> args);
+
 }

@@ -3,19 +3,12 @@
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<c:set var="pageTitle" value="게시물 수정" />
+<c:set var="pageTitle" value="회원정보 수정" />
 <%@ include file="../part/head.jspf"%>
 
 <script>
 	function modifyFormSubmited(form) {
 		var emailP = /\w+@\w+\.\w+\.?\w*/;
-
-		form.name.value = form.name.value.trim();
-		if (form.name.value.length == 0) {
-			alert('이름을 입력해주세요.');
-			form.name.focus();
-			return;
-		}
 
 		form.email.value = form.email.value.trim();
 		if (form.email.value.length == 0) {
@@ -23,6 +16,20 @@
 			form.email.focus();
 			return;
 		}
+
+		form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
+		if (form.loginPwConfirm.value.length == 0) {
+			alert('비밀번호를 입력해주세요.');
+			form.loginPwConfirm.focus();
+			return;
+		}
+
+		if(form.loginPwConfirm.value != ${member.loginPw}) {
+			alert('비밀번호가 올바르지 않습니다.');
+			form.loginPwConfirm.value = "";
+			form.loginPwConfirm.focus();
+			return;
+			}
 
 		if (!email.match(emailP)) {
 			alert("이메일 형식에 맞지 않습니다.");
@@ -54,6 +61,11 @@
 					<td><input type="text" name="email" value="${member.email}"></td>
 				</tr>
 				<tr>
+					<th>비밀번호 확인</th>
+					<td><input type="password" name="loginPwConfirm"
+						placeholder="비밀번호를 입력해주세요."></td>
+				</tr>
+				<tr>
 					<th>수정</th>
 					<td><input class="btn-a" type="submit" value="수정"> <input
 						class="btn-a" type="reset" value="취소"
@@ -62,6 +74,7 @@
 			</tbody>
 		</table>
 	</form>
+	<button class="btn-a" type="button">비밀번호 변경</button>
 	<button class="btn-a" type="button"
 		onclick="if ( confirm('정말 탈퇴하시겠습니까?') ) location.href = './doSecession'">회원탈퇴</button>
 

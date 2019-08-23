@@ -16,4 +16,6 @@ public interface MemberService {
 	public Map<String, Object> updateAuthStatus(Map<String, Object> param);
 
 	public Map<String, Object> updateDelStatus(Map<String, Object> param);
+
+	public Map<String, Object> update(Map<String, Object> param);
 }
