@@ -15,14 +15,7 @@
 			form.loginPw.focus();
 			return;
 		}
-
-		if(form.loginPw.value != '${member.loginPw}' ) {
-			alert('비밀번호가 올바르지 않습니다.');
-			form.loginPw.value = "";
-			form.loginPw.focus();
-			return;
-			}
-
+		
 		form.newloginPw.value = form.newloginPw.value.trim();
 		if (form.newloginPw.value.length == 0) {
 			alert('변경할 비밀번호를 입력해주세요.');
@@ -47,6 +40,20 @@
 		form.submit();
 	}
 </script>
+
+<c:if test="${param.errorField != null}">
+<script>
+	$(function() {
+		$('input[name="${param.errorField}"]').focus();
+
+		$('input[name="${param.errorField}"]').addClass('error-field');
+
+		$('input[name="${param.errorField}"]').keyup(function() {
+			$(this).removeClass('error-field');
+		});
+	});
+</script>
+</c:if>
 
 <div class="con table-common">
 	<form action="./doModifyPassword" method="POST"

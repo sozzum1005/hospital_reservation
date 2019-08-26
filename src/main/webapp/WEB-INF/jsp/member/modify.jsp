@@ -23,14 +23,7 @@
 			form.loginPwConfirm.focus();
 			return;
 		}
-
-		if(form.loginPwConfirm.value != '${member.loginPw}' ) {
-			alert('비밀번호가 올바르지 않습니다.');
-			form.loginPwConfirm.value = "";
-			form.loginPwConfirm.focus();
-			return;
-			}
-
+		
 		if (!email.match(emailP)) {
 			alert("이메일 형식에 맞지 않습니다.");
 			return false;
@@ -39,6 +32,20 @@
 		form.submit();
 	}
 </script>
+
+<c:if test="${param.errorField != null}">
+<script>
+	$(function() {
+		$('input[name="${param.errorField}"]').focus();
+
+		$('input[name="${param.errorField}"]').addClass('error-field');
+
+		$('input[name="${param.errorField}"]').keyup(function() {
+			$(this).removeClass('error-field');
+		});
+	});
+</script>
+</c:if>
 
 <div class="con table-common">
 	<form action="./doModify" method="POST"
@@ -62,8 +69,7 @@
 				</tr>
 				<tr>
 					<th>비밀번호 확인</th>
-					<td><input type="password" name="loginPwConfirm"
-						placeholder="비밀번호를 입력해주세요."></td>
+					<td><input type="password" name="loginPwConfirm" placeholder="비밀번호를 입력해주세요."></td>
 				</tr>
 				<tr>
 					<th>수정</th>
