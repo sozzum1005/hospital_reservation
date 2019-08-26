@@ -23,7 +23,7 @@
 			form.loginPwConfirm.focus();
 			return;
 		}
-		
+
 		if (!email.match(emailP)) {
 			alert("이메일 형식에 맞지 않습니다.");
 			return false;
@@ -34,17 +34,17 @@
 </script>
 
 <c:if test="${param.errorField != null}">
-<script>
-	$(function() {
-		$('input[name="${param.errorField}"]').focus();
+	<script>
+		$(function() {
+			$('input[name="${param.errorField}"]').focus();
 
-		$('input[name="${param.errorField}"]').addClass('error-field');
+			$('input[name="${param.errorField}"]').addClass('error-field');
 
-		$('input[name="${param.errorField}"]').keyup(function() {
-			$(this).removeClass('error-field');
+			$('input[name="${param.errorField}"]').keyup(function() {
+				$(this).removeClass('error-field');
+			});
 		});
-	});
-</script>
+	</script>
 </c:if>
 
 <div class="con table-common">
@@ -69,7 +69,8 @@
 				</tr>
 				<tr>
 					<th>비밀번호 확인</th>
-					<td><input type="password" name="loginPwConfirm" placeholder="비밀번호를 입력해주세요."></td>
+					<td><input type="password" name="loginPwConfirm"
+						placeholder="비밀번호를 입력해주세요."></td>
 				</tr>
 				<tr>
 					<th>수정</th>
@@ -79,8 +80,37 @@
 				</tr>
 			</tbody>
 		</table>
+		<h1>회원 탈퇴</h1>
+		<div class="con table-common">
+			<table>
+
+				<colgroup>
+					<col width="150">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" name="memberId" value="${member.loginId}"></td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td><c:out value="${member.name}" /></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="text" name="email" value="${member.email}"></td>
+					</tr>
+					<tr>
+						<th>비밀번호 확인</th>
+						<td><input type="password" name="loginPwConfirm"
+							placeholder="비밀번호를 입력해주세요."></td>
+					</tr>
+
+				</tbody>
+			</table>
 	</form>
-	<button class="btn-a" type="button" onclick="location.href='../member/modifypassword'">비밀번호 변경</button>
+	<button class="btn-a" type="button"
+		onclick="location.href='../member/modifypassword'">비밀번호 변경</button>
 	<button class="btn-a" type="button"
 		onclick="if ( confirm('정말 탈퇴하시겠습니까?') ) location.href = './doSecession'">회원탈퇴</button>
 
