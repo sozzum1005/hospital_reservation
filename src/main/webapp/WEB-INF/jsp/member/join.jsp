@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.sbs.cuni.dto.Member"%>
+<%@ page import="com.sbs.hospital.dto.Member"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="pageTitle" value="회원가입" />
@@ -18,6 +18,12 @@
 
 		var emailP = /\w+@\w+\.\w+\.?\w*/;
 
+		form.name.value = form.name.value.trim();
+		if (form.name.value.length == 0) {
+			alert('이름을 입력해주세요.');
+			form.name.focus();
+			return;
+		}
 		form.loginId.value = form.loginId.value.trim();
 		if (form.loginId.value.length == 0) {
 			alert('아이디를 입력해주세요.');
@@ -34,12 +40,6 @@
 		if (form.loginPwConfirm.value.length == 0) {
 			alert('비밀번호 확인을 입력해주세요.');
 			form.loginPwConfirm.focus();
-			return;
-		}
-		form.name.value = form.name.value.trim();
-		if (form.name.value.length == 0) {
-			alert('이름을 입력해주세요.');
-			form.name.focus();
 			return;
 		}
 		form.loginPw.value = form.loginPw.value.trim();
@@ -81,6 +81,7 @@
 			</colgroup>
 			<tbody>
 				<tr>
+					<input type="hidden" name="staffId" value="0">
 					<th>이름</th>
 					<td><input type="text" name="name" autocomplete="off"
 						placeholder="이름을 입력해주세요."></td>

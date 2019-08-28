@@ -26,96 +26,149 @@
 	</c:forEach>
 </c:url>
 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title><c:out value="${logoText}" /> - <c:out
-		value="${pageTitle}" /></title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Roboto+Mono"
+	rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/jquery.nivo.slider.pack.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/nivo-slider.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+
+<title><c:out value="${logoText}" /> - <c:out
+		value="${pageTitle}" /></title>
+
 <script src="/resource/common.js"></script>
 <script src="/resource/app.js"></script>
+<script src="/resource/index.js"></script>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 <link rel="stylesheet" href="/resource/common.css">
-<link rel="stylesheet" href="/resource/app.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resource/index.css">
+<link rel="stylesheet" href="/resource/index.css">
+
 <style>
 /*datepicer 버튼 롤오버 시 손가락 모양 표시*/
-.ui-datepicker-trigger{cursor: pointer;}
+.ui-datepicker-trigger {
+	cursor: pointer;
+}
 /*datepicer input 롤오버 시 손가락 모양 표시*/
-.hasDatepicker{cursor: pointer;}
+.hasDatepicker {
+	cursor: pointer;
+}
 </style>
+
+
+
 <script>
 	var loginedMemberId = parseInt('${loginedMemberId}');
 </script>
 </head>
 <body>
-	<div class="logo-bar con">
-		<h1>
-			<c:out value="${logoText}" />
-			-
-			<c:out value="${pageTitle}" />
-		</h1>
+
+	<div class="top-menu-bar con-min-width">
+		<nav class="top-menu-1 con row">
+			<ul class="row cell-right">
+				<c:if test="${isLogined == false}">
+					<li class="cell"><a
+						href="/member/login?redirectUrl=${headRedirectUrl}">로그인</a></li>
+					<li class="cell"><a
+						href="/member/join?redirectUrl=${headRedirectUrl}">회원가입</a></li>
+				</c:if>
+				<c:if test="${isLogined}">
+					<li class="cell"><a href="/member/myPage" class="relative">MY
+							PAGE</a></li>
+					<li class="cell"><a href="/member/doLogout" class="relative">로그아웃</a></li>
+					<li class="cell"><a href="/member/modify" class="relative">회원정보수정</a></li>
+				</c:if>
+				<li class="cell"><a href="#">고객센터</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="toparea con row">
+		<div class="left-menu cell">
+			<nav>
+				<ul class="row">
+					<li class="cell"><a href="#">병원소개</a></li>
+					<li class="cell"><a href="#">오시는길</a></li>
+					<li class="cell"><a href="#">의료진 소개</a></li>
+					<li class="cell"><a href="#">오늘의 소식</a></li>
+					<li class="cell"><a href="#">인재채용</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="top-logo cell">
+			<div class="img-box">
+				<img
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmP-4mZcSEGIkaIfQmrcHdsD9CKujDjU5WBH04dFzNBPGnCEO"
+					alt="">
+			</div>
+		</div>
 	</div>
 
-	<div class="top-bar con margin-top-size-1">
-		<nav class="menu-1">
+	<div class="menu-bar con text-align-center ">
+		<nav class="menu-1 inline-block">
 			<ul class="row">
-				<li class="cell margin-right-size-1"><a href="/"
-					class="block btn-a">홈</a></li>
+				<li class="cell relative"><a href="#">진료예약</a>
+					<ul>
+						<li><a href="#">진료과/의료진</a></li>
+						<li><a href="#">진료일정 검색</a></li>
+						<li><a href="/reservation/counselReservation">예약하기</a></li>
+					</ul></li>
+				<li class="cell relative"><a href="#">센터</a>
+					<ul>
+						<li><a href="#">소화기센터</a></li>
+						<li><a href="#">소아청소년센터</a></li>
+						<li><a href="#">뇌신경센터</a></li>
+						<li><a href="#">인공와우센터</a></li>
+						<li><a href="#">부정맥센터</a></li>
+					</ul></li>
+				<li class="cell relative"><a href="#">의료진 소개</a>
+					<ul>
+						<li><a href="#">소화기내과</a></li>
+						<li><a href="#">소아외과</a></li>
+						<li><a href="#">신경과</a></li>
+						<li><a href="#">이비인후과</a></li>
+						<li><a href="#">순환기내과</a></li>
+					</ul></li>
+				<li class="cell relative"><a href="#">건강백서</a>
+					<ul>
+						<li><a href="#">오늘의 건강</a></li>
+						<li><a href="#">건강식품</a></li>
+						<li><a href="#">건강백서</a></li>
+					</ul></li>
+				<li class="cell relative"><a href="#">병원안내</a>
+					<ul>
+						<li><a href="#">병원지도</a></li>
+						<li><a href="#">층별안내</a></li>
+						<li><a href="#">오시는 길</a></li>
+					</ul></li>
+				<li class="cell relative"><a href="#">Q & A</a>
+					<ul>
+						<li><a href="#">오늘의 질문</a></li>
+						<li><a href="#">질문백서</a></li>
+						<li><a href="#">자주 묻는 질문</a></li>
+					</ul></li>
 
-				<li class="cell margin-right-size-1"><a
-					href="/reservation/counselReservation" class="block btn-a">진료예약</a></li>
-				<li class="cell margin-right-size-1"><a
-					href="/article/list?boardId=2" class="block btn-a">예약조회</a></li>
-
-
-				<%-- staff(permissionLevel=1)가 로그인 했을 때 상담 예약가능 시간 설정이 가능한 페이지가 떠야함 --%>
-				<c:if test="${isLogined}">	
-					<c:if test="${loginedMember.permissionLevel > 0}">
-						<li class="cell margin-right-size-1"><a
-							href="/article/add?boardId=1" class="block btn-a">진료예약설정</a></li>
-						<li class="cell margin-right-size-1"><a
-						href="/article/add?boardId=2" class="block btn-a">예약시간수정</a></li>
-					</c:if>
-					<c:if
-						test="${loginedMemberId == article.memberId && isArticleModifyAvailable && param.id != null}">
-						<li class="cell margin-right-size-1"><a
-							href="/article/modify?id=${article.id}&boardId=${param.boardId}"
-							class="block btn-a">글 수정</a></li>
-					</c:if>
-					<c:if test="${isArticleDeleteAvailable && param.id != null}">
-						<c:if
-							test="${loginedMemberId == article.memberId || loginedMember.permissionLevel > 0}">
-							<li class="cell margin-right-size-1"><a
-								onclick="return confirm('정말 삭제하시겠습니까?');"
-								href="/article/doDelete?id=${article.id}&boardId=${param.boardId}"
-								class="block btn-a">글 삭제</a></li>
-						</c:if>
-					</c:if>
-					<li class="cell margin-right-size-1"><a href="/member/myPage"
-						class="block btn-a">마이페이지</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/modify?id=${member.id}" class="block btn-a">회원정보수정</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/doLogout" class="block btn-a">로그아웃</a></li>
-				</c:if>
-
-				<c:if test="${isLogined == false}">
-					<li class="cell margin-right-size-1"><a
-						href="/member/login?redirectUrl=${headRedirectUrl}"
-						class="block btn-a">로그인</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/findInfo" class="block btn-a">아이디/비번찾기</a></li>
-					<li class="cell margin-right-size-1"><a
-						href="/member/join?redirectUrl=${headRedirectUrl}"
-						class="block btn-a">가입</a></li>
-				</c:if>
 			</ul>
 		</nav>
 	</div>
