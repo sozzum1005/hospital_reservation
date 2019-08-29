@@ -60,6 +60,30 @@
 			$('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 			
 		});
+
+		function categoryChange(e) {
+			  var doctor_소화기내과= ["백승운"];
+			  var doctor_소아외과 = ["이석구"];
+			  var doctor_신경과 = ["정진상"];
+			  var doctor_이비인후과 = ["정원호"];
+			  var doctor_순환기내과 = ["김준수"];
+			  var target = document.getElementById("doctor");
+			 
+			  if(e.value == "소화기내과") var d = doctor_소화기내과;
+			  else if(e.value == "소아외과") var d = doctor_소아외과;
+			  else if(e.value == "신경과") var d = doctor_신경과;
+			  else if(e.value == "이비인후과") var d = doctor_이비인후과;
+			  else if(e.value == "순환기내과") var d = doctor_순환기내과;
+			 
+			  target.options.length = 0;
+			 
+			  for (x in d) {
+			    var opt = document.createElement("option");
+			    opt.value = d[x];
+			    opt.innerHTML = d[x];
+			    target.appendChild(opt);
+			  } 
+			}
 	</script>
 
 
@@ -89,7 +113,7 @@
 		<tr>
 			<th>진료과 및 의료진 선택</th>
 			<td>
-			<select name="dept">
+			<select onchange="categoryChange(this)" name="dept">
 					<option value="">의료과선택</option>
 					<option value="소화기내과">${deptList[0]}</option>
 					<option value="소아외과">${deptList[1]}</option>
@@ -98,7 +122,10 @@
 					<option value="순환기내과">${deptList[4]}</option>
 			</select>
 			
-			<td><c:out value="${staff.name}" escapeXml="true" /></td>
+			<td>
+			<select id="doctor">
+			</select>
+			</td>
 
 		<tr>
 		<tr>

@@ -11,4 +11,8 @@ public interface CounselReservationDao {
 
 	public List<String> getDeptList();
 
+	public List<String> getstaffList();
+
+
+
 }

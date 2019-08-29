@@ -8,4 +8,6 @@ public interface CounselReservationService {
 
 	public List<String> getDeptList();
 
+	public List<String> getstaffList();
+
 }

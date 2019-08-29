@@ -18,9 +18,11 @@ public class CounselReservationController {
 	CounselReservationService cr;
 	
 	@RequestMapping("/reservation/counselReservation")
-	public String Reservation(Model model) {
+	public String Reservation(Model model, Model model2) {
 		List<String> d = cr.getDeptList();
 		model.addAttribute("deptList", d);
+		List<String> s = cr.getstaffList();
+		model2.addAttribute("staffList", s);
 		return "reservation/counselReservation";
 	}
 }

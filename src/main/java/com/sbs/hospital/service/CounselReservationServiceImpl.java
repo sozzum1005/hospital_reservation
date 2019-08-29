@@ -18,5 +18,10 @@ public class CounselReservationServiceImpl implements CounselReservationService 
 	public List<String> getDeptList() {
 		return crd.getDeptList();
 	}
+	@Override
+	public List<String> getstaffList() {
+		
+		return crd.getstaffList();
+	}
 
 }

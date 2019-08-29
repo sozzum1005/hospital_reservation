@@ -8,10 +8,23 @@
 		FROM `dept`
 	</select>
 	
+	<select id="getstaffList" resultType="String">
+		SELECT `name`
+		FROM `staff`
+	</select>
+	
 	<resultMap type="com.sbs.hospital.dto.Dept" id="Dept">
 		<id property="id" column="id"/>
 		<id property="regDate" column="regDate"/>
 		<id property="name" column="name"/>
 		<id property="centerId" column="centerId"/>
+	</resultMap>
+	
+	<resultMap type="com.sbs.hospital.dto.Staff" id="staff">
+		<id property="id" column="id"/>
+		<id property="regDate" column="regDate"/>
+		<id property="name" column="name"/>
+		<id property="staffType" column="staffType"/>
+		<id property="deptId" column="deptId"/>
 	</resultMap>
 </mapper>
