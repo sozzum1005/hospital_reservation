@@ -1,10 +1,12 @@
-package com.sbs.cuni.service;
+package com.sbs.hospital.service;
+
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sbs.cuni.dao.CounselReservationDao;
-import com.sbs.cuni.dto.CounselReservation;
+import com.sbs.hospital.dao.CounselReservationDao;
+import com.sbs.hospital.dto.CounselReservation;
 
 @Service
 public class CounselReservationServiceImpl implements CounselReservationService {

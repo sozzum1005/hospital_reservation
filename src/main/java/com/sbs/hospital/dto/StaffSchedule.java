@@ -1,4 +1,4 @@
-package com.sbs.cuni.dto;
+package com.sbs.hospital.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,10 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Staff {
+public class StaffSchedule {
 	private int id;
 	private String regDate;
-	private String name;
-	private String StaffType;
 	private int deptId;
+	private int staffId;
+	private String startTime;
+	private String endTime;
+	private String scheduleType;
+	private String relType;
+	private int relId;
 }

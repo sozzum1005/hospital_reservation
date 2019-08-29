@@ -1,8 +1,10 @@
-package com.sbs.cuni.dao;
+package com.sbs.hospital.dao;
+
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.sbs.cuni.dto.CounselReservation;
+import com.sbs.hospital.dto.CounselReservation;
 
 @Mapper
 public interface CounselReservationDao {

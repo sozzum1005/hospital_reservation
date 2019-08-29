@@ -1,4 +1,4 @@
-package com.sbs.cuni.service;
+package com.sbs.hospital.service;
 
 import java.util.Map;
 
@@ -6,8 +6,8 @@ import org.apache.groovy.util.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sbs.cuni.dao.MemberDao;
-import com.sbs.cuni.dto.Member;
+import com.sbs.hospital.dao.MemberDao;
+import com.sbs.hospital.dto.Member;
 
 import lombok.extern.slf4j.Slf4j;
 @Service

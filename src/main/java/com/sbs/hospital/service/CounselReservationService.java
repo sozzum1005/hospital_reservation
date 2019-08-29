@@ -1,6 +1,8 @@
-package com.sbs.cuni.service;
+package com.sbs.hospital.service;
 
-import com.sbs.cuni.dto.CounselReservation;
+import java.util.Map;
+
+import com.sbs.hospital.dto.CounselReservation;
 
 public interface CounselReservationService {
 	public CounselReservation getOneReservation(long loginedMemberId);

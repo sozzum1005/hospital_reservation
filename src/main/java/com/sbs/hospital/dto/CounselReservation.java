@@ -1,4 +1,6 @@
-package com.sbs.cuni.dto;
+package com.sbs.hospital.dto;
+
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +17,6 @@ public class CounselReservation {
 	private int clientMemberId;
 	private int staffScheduleId;
 	private String body;
+	
+	private Map<String, String> extra;
 }
