@@ -95,8 +95,7 @@
 						href="/member/join?redirectUrl=${headRedirectUrl}">회원가입</a></li>
 				</c:if>
 				<c:if test="${isLogined}">
-					<li class="cell"><a href="/member/myPage" class="relative">MY
-							PAGE</a></li>
+					<li class="cell"><a href="/member/myPage" class="relative">MY PAGE</a></li>
 					<li class="cell"><a href="/member/doLogout" class="relative">로그아웃</a></li>
 					<li class="cell"><a href="/member/modify" class="relative">회원정보수정</a></li>
 				</c:if>
@@ -168,7 +167,6 @@
 						<li><a href="#">질문백서</a></li>
 						<li><a href="#">자주 묻는 질문</a></li>
 					</ul></li>
-
 			</ul>
 		</nav>
 	</div>

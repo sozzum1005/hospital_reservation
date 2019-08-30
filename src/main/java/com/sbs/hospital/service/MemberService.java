@@ -1,3 +1,4 @@
+    
 package com.sbs.hospital.service;
 
 import java.util.Map;
@@ -20,4 +21,8 @@ public interface MemberService {
 	public Map<String, Object> update(Map<String, Object> param);
 
 	public Map<String, Object> updatepassword(Map<String, Object> param);
+
+	public Map<String, Object> searchPw(Map<String, Object> param);
+
+	public Map<String, Object> searchId(Map<String, Object> param);
 }

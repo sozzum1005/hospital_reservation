@@ -1,5 +1,8 @@
 package com.sbs.hospital.dto;
 
+
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,4 +18,6 @@ public class CounselReservation {
 	private int clientMemberId;
 	private int staffScheduleId;
 	private String body;
+	
+	private Map<String, String> extra;
 }

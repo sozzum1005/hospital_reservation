@@ -13,7 +13,7 @@
 		SELECT *
 		FROM member
 		WHERE loginId = #{loginId}
-		AND loginPw =
+		AND loginPw =	
 		#{loginPw}
 		AND delStatus = 0
 	</select>
@@ -52,6 +52,24 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<select id="searchId" parameterType="Map" resultMap="Member">
+		SELECT *
+		FROM
+		member
+		WHERE name = #{name}
+		AND email = #{email}
+	</select>
+
+	<select id="searchPw" parameterType="Map" resultMap="Member">
+		SELECT *
+		FROM
+		member
+		WHERE name = #{name}
+		AND loginId = #{loginId}
+		AND email =
+		#{email}
+	</select>
 
 	<select id="getEmailMember" parameterType="map"
 		resultType="Member">
