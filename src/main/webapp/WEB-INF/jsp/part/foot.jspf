@@ -26,12 +26,12 @@
                         </ul>
                     </div>
                     <div class="footer-bn04 cell relative">
-                        <ul class="bn-04-top row relative">
+                        <ul class="bn-04-top row relative" style="cursor:pointer;" onclick="location.href = '../reservation/reservationSearch';">
                             <li class="cell">예약조회</li>
                             <li class="cell footer-go">GO</li>
                             <li class="absolute go"><img src="http://ncs.oa.gg/resource/2019-fullstack-course/site/vivienne.kr/img/main_banner_right.png" alt=""></li>
-                            <li class="cell footer-04-cj">(CJ대한통운)</li><br>
-                            <li>주문한 상품 배송 조회 바로가기</li>
+                            <li class="cell footer-04-cj">(이동)</li><br>
+                            <li>예약조회 페이지로 이동합니다.</li>
                         </ul>
                         <ul class="bn-04-bottem row relative">
                             <li class=" cell">이벤트</li>
