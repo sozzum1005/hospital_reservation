@@ -36,6 +36,7 @@
 			</tr>
 			<tr>
 				<th>전문담당의</th>
+				
 				<td><c:out value="${cr.extra.staffName}" /></td>
 			</tr>
 		</tbody>
