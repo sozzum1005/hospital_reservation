@@ -1,6 +1,7 @@
 package com.sbs.hospital.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,37 +12,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.hospital.dto.CounselReservation;
+import com.sbs.hospital.dto.Dept;
 import com.sbs.hospital.dto.Member;
+import com.sbs.hospital.dto.Staff;
 import com.sbs.hospital.service.CounselReservationService;
 import com.sbs.hospital.service.MemberService;
 
-
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class CounselReservationController {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
 	private CounselReservationService crs;
-	
+
 	@RequestMapping("/reservation/counselReservation")
-	public String Reservation(Model model, Model model2) {
-		List<String> d = crs.getDeptList();
+	public String Reservation(Model model) {
+		List<Map<String, Object>> doctorList = crs.getDoctorList();
+		List<Dept> d = crs.getDeptList();
+		log.info("d : " + d);
 		model.addAttribute("deptList", d);
-		List<String> s = crs.getstaffList();
-		model2.addAttribute("staffList", s);
+		List<Staff> s = crs.getStaffList();
+		model.addAttribute("staffList", s);
+
+		// model.addAttribute("doctorList", doctorList);
+
 		return "reservation/counselReservation";
 	}
-	
-	
+
 	@RequestMapping("reservation/reservationSearch")
-	public String reservationSerach(@RequestParam(value = "id", defaultValue = "0") long id, Model model, HttpServletRequest req) {
-		Member loginedMember = (Member)req.getAttribute("loginedMember");
-		long loginedMemberId = (long)req.getAttribute("loginedMemberId");
+	public String reservationSerach(@RequestParam(value = "id", defaultValue = "0") long id, Model model,
+			HttpServletRequest req) {
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		long loginedMemberId = (long) req.getAttribute("loginedMemberId");
 		CounselReservation counselReservation = crs.getOneReservation(loginedMemberId);
-		
+
 		model.addAttribute("cr", counselReservation);
-		
+
 		return "reservation/reservationSearch";
 	}
 }

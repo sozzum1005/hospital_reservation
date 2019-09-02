@@ -12,10 +12,30 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script>
+	var deptList = {};
+</script>
+
+<c:forEach var="dept" items="${deptList}">
+	<script>
+		deptList[${dept.id}] = {};
+		deptList[${dept.id}].id = ${dept.id};
+		deptList[${dept.id}].name = '${dept.name}';
+		deptList[${dept.id}].doctors = [];
+	</script>
+</c:forEach>
+
+<c:forEach var="staff" items="${staffList}">
+	<script>
+		var staff = {};
+		staff.id = ${staff.id};
+		staff.name = '${staff.name}';
+
+		deptList[${staff.deptId}].doctors.push(staff);
+	</script>
+</c:forEach>
+
 <script>
 	$(function() {
 		//모든 datepicker에 대한 공통 옵션 설정
@@ -66,32 +86,21 @@
 
 	});
 
-	function categoryChange(e) {
-		var doctor_소화기내과 = [ "백승운" ];
-		var doctor_소아외과 = [ "이석구" ];
-		var doctor_신경과 = [ "정진상" ];
-		var doctor_이비인후과 = [ "정원호" ];
-		var doctor_순환기내과 = [ "김준수" ];
-		var target = document.getElementById("doctor");
+	function categoryChange(obj) {
+		var selectedDeptId = $(obj).val();
 
-		if (e.value == "소화기내과")
-			var d = doctor_소화기내과;
-		else if (e.value == "소아외과")
-			var d = doctor_소아외과;
-		else if (e.value == "신경과")
-			var d = doctor_신경과;
-		else if (e.value == "이비인후과")
-			var d = doctor_이비인후과;
-		else if (e.value == "순환기내과")
-			var d = doctor_순환기내과;
+		var dept = deptList[selectedDeptId];
 
-		target.options.length = 0;
+		var $doctorSelectBox = $('#doctor');
 
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			opt.innerHTML = d[x];
-			target.appendChild(opt);
+		$doctorSelectBox.empty();
+
+		if ( selectedDeptId ) {
+			for ( var i = 0; i < dept.doctors.length; i++ ) {
+				var doctor = dept.doctors[i];
+
+				$doctorSelectBox.append('<option value="' + doctor.id + '">' + doctor.name + '</option>');
+			}
 		}
 	}
 </script>
@@ -124,16 +133,13 @@
 		<table>
 			<tr>
 				<th>진료과 및 의료진 선택</th>
-				<td><select onchange="categoryChange(this)" name="dept">
+				<td><select onchange="categoryChange(this);" name="dept">
 						<option value="">의료과선택</option>
-						<option value="소화기내과">${deptList[0]}</option>
-						<option value="소아외과">${deptList[1]}</option>
-						<option value="신경과">${deptList[2]}</option>
-						<option value="이비인후과">${deptList[3]}</option>
-						<option value="순환기내과">${deptList[4]}</option>
+						<c:forEach var="dept" items="${deptList}">
+							<option value="${dept.id}">${dept.name}</option>
+						</c:forEach>
 				</select>
-				<td><select id="doctor">
-				</select></td>
+				<td><select id="doctor"></select></td>
 			<tr>
 			<tr>
 				<th>날짜 선택</th>

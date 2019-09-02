@@ -2,46 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sbs.hospital.dao.CounselReservationDao">
 
-	<select id="getDeptList" resultType="String">
-		SELECT `name`
+	<select id="getDeptList" resultType="Dept">
+		SELECT *
 		FROM `dept`
 	</select>
-	
-	<select id="getstaffList" resultType="String">
-		SELECT `name`
+
+	<select id="getStaffList" resultType="Staff">
+		SELECT *
 		FROM `staff`
 	</select>
-	
 
+	<select id="getDoctorList" resultType="map">
+		SELECT DT.id AS deptId,
+		DT.name AS deptName,
+		DC.id AS doctorId,
+		DC.name AS doctorName
+		FROM staff
+		AS DC
+		INNER JOIN dept AS DT
+		ON DC.deptId = DT.id
+		AND DC.staffType = '의사'
+	</select>
 
 	<select id="getOneReservation" parameterType="long"
 		resultMap="CounselReservation">
 		SELECT CR.*,
 		SS.startTime AS extra__startTime,
-		ST.name AS extra__staffName,
+		ST.name AS
+		extra__staffName,
 		CLI.name AS extra__clientName,
-		DP.name AS extra__deptName
+		DP.name AS
+		extra__deptName
 		FROM counselReservation AS CR
-		INNER JOIN staffSchedule AS SS
+		INNER JOIN staffSchedule
+		AS SS
 		ON CR.staffScheduleId = SS.id
 		INNER JOIN dept AS DP
-		ON SS.deptId = DP.id
+		ON SS.deptId =
+		DP.id
 		INNER JOIN staff AS ST
 		ON SS.staffId = ST.id
-		INNER JOIN `member` AS CLI
+		INNER JOIN `member` AS
+		CLI
 		ON CR.clientMemberId = CLI.id
-		WHERE CR.clientMemberId = #{loginedMemberId}
+		WHERE CR.clientMemberId =
+		#{loginedMemberId}
 	</select>
 
-	<resultMap type="CounselReservation"
-		id="CounselReservation">
+	<resultMap type="CounselReservation" id="CounselReservation">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
 		<id property="clientMemberId" column="clientMemberId" />
 		<id property="staffScheduleId" column="staffScheduleId" />
 		<id property="body" column="body" />
 		<association property="extra" javaType="java.util.HashMap">
-			<result property="startTime" column="extra__startTime" javaType="java.lang.String" />
+			<result property="startTime" column="extra__startTime"
+				javaType="java.lang.String" />
 			<result property="staffName" column="extra__staffName" />
 			<result property="clientName" column="extra__clientName" />
 			<result property="deptName" column="extra__deptName" />
